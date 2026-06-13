@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>哈哈</title>
+    <title>橙多教育成考院校查询系统 | 年学费+总学费+学制+录取分数线</title>
     <style>
         * {
             margin: 0;
@@ -13,18 +13,16 @@
 
         body {
             background: #f0f7ff;
-            font-family: 'Segoe UI', 'Roboto', 'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+            font-family: 'Segoe UI', 'Roboto', 'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
             padding: 2rem 1.5rem;
             color: #1a2c3e;
         }
 
-        /* 主容器 */
         .container {
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        /* 头部与标题 */
         .hero {
             text-align: center;
             margin-bottom: 2rem;
@@ -43,45 +41,83 @@
 
         .hero p {
             color: #4a627a;
-            font-size: 1rem;
-            border-left: 3px solid #2c9ab3;
-            padding-left: 1rem;
-            display: inline-block;
+            font-size: 0.95rem;
             background: #eef4fc;
             border-radius: 40px;
             padding: 0.4rem 1.2rem;
+            display: inline-block;
         }
 
-        /* 搜索卡片 */
         .search-card {
             background: white;
             border-radius: 2rem;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
             padding: 1.5rem 2rem;
             margin-bottom: 2.5rem;
-            transition: all 0.2s ease;
         }
 
-        .search-label {
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin-bottom: 1.5rem;
+            align-items: center;
+            border-bottom: 1px solid #e9f0f5;
+            padding-bottom: 1.2rem;
+        }
+
+        .filter-label {
             font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.8rem;
+            color: #0f3b4c;
+            font-size: 0.95rem;
+        }
+
+        .level-options {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .level-option {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #0f3b4c;
+            cursor: pointer;
+            font-size: 0.95rem;
+            background: #f8fafc;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            transition: all 0.2s;
+            border: 1px solid #e2edf2;
         }
 
-        .search-label i {
-            font-style: normal;
-            font-size: 1.2rem;
+        .level-option.active {
+            background: #1f6e7c;
+            border-color: #1f6e7c;
+            color: white;
         }
 
-        .input-group {
+        .level-option.active input {
+            accent-color: white;
+        }
+
+        .level-option input {
+            margin: 0;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .level-option span {
+            cursor: pointer;
+        }
+
+        .search-row {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
             align-items: center;
+            margin-top: 0.5rem;
         }
 
         .search-input-wrapper {
@@ -97,7 +133,6 @@
             border-radius: 60px;
             outline: none;
             transition: 0.2s;
-            background: #ffffff;
             font-weight: 500;
         }
 
@@ -116,7 +151,6 @@
             color: white;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -125,7 +159,6 @@
         .btn-search:hover {
             background: #0e5563;
             transform: scale(0.98);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .btn-clear {
@@ -136,14 +169,104 @@
             border-radius: 60px;
             font-weight: 500;
             cursor: pointer;
-            transition: 0.2s;
         }
 
         .btn-clear:hover {
             background: #e2e9f0;
         }
 
-        /* 统计与排序条 */
+        /* 咨询卡片样式 - 紧凑型，微信号与复制按钮同行右侧 */
+        .consult-card {
+            background: linear-gradient(105deg, #f0f9ff, #e6f4f7);
+            border-radius: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+            border: 1px solid #cde9f0;
+        }
+        .consult-left {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .consult-title {
+            font-weight: 800;
+            font-size: 1rem;
+            color: #1a6c7c;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .consult-desc {
+            font-size: 0.78rem;
+            color: #3d7b8c;
+        }
+        .wechat-action {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: white;
+            padding: 0.2rem 0.6rem 0.2rem 1rem;
+            border-radius: 60px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .wechat-id {
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            color: #0b5e6b;
+        }
+        .copy-btn {
+            background: #eef2f6;
+            border: none;
+            padding: 0.25rem 0.7rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .copy-btn:hover {
+            background: #d0e2e9;
+        }
+        .consult-badge {
+            background: #ff8c00;
+            color: white;
+            padding: 0.25rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        @media (max-width: 780px) {
+            .consult-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .consult-left {
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            .consult-badge {
+                text-align: center;
+            }
+        }
+        @media (max-width: 550px) {
+            .consult-left {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .wechat-action {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+
         .info-bar {
             display: flex;
             justify-content: space-between;
@@ -159,7 +282,6 @@
             border-radius: 40px;
             font-size: 0.9rem;
             font-weight: 500;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             color: #1f6e7c;
         }
 
@@ -188,15 +310,9 @@
             color: white;
         }
 
-        .sort-btn:hover:not(.active) {
-            background: #e6f4f5;
-            border-color: #7bbbcb;
-        }
-
-        /* 院校卡片网格 */
         .universities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
             gap: 1.6rem;
             margin-top: 0.5rem;
         }
@@ -224,7 +340,7 @@
         }
 
         .uni-name {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: #133c4a;
             display: flex;
@@ -243,6 +359,32 @@
             font-weight: 500;
         }
 
+        .admission-stats {
+            background: #fef7e0;
+            margin-top: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid #ffe6b3;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #b45f06;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: #c45c00;
+        }
+
         .card-body {
             padding: 1rem 1.3rem;
             flex: 1;
@@ -254,35 +396,59 @@
             padding: 0.7rem 0.9rem;
             margin-bottom: 0.7rem;
             border-left: 4px solid #2c9ab3;
-            transition: all 0.1s;
         }
 
         .major-name {
             font-weight: 700;
             font-size: 0.95rem;
             color: #1c5568;
+            margin-bottom: 0.5rem;
+        }
+
+        .fee-info {
             display: flex;
-            justify-content: space-between;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 0.35rem;
-        }
-
-        .tuition {
-            background: #f0f6fa;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #0a6b5e;
-        }
-
-        .major-detail {
-            font-size: 0.75rem;
-            color: #5d7c92;
-            display: flex;
             gap: 0.8rem;
-            flex-wrap: wrap;
+            margin-top: 6px;
+            font-size: 0.75rem;
+            align-items: center;
+        }
+
+        .fee-item {
+            background: #f0f6fa;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .year-tuition {
+            background: #e6f4ea;
+            font-weight: 600;
+            color: #2c6e2f;
+        }
+
+        .duration {
+            background: #e3f0fc;
+            font-weight: 600;
+            color: #1a6091;
+        }
+
+        .total-fee {
+            background: #fff0db;
+            font-weight: 600;
+            color: #b45f06;
+        }
+
+        .level-tag {
+            display: inline-block;
+            background: #eef2fa;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            color: #2c6979;
+            margin-top: 6px;
         }
 
         .empty-state {
@@ -291,16 +457,6 @@
             background: white;
             border-radius: 2rem;
             margin-top: 1rem;
-        }
-
-        .empty-state svg {
-            opacity: 0.5;
-            margin-bottom: 1rem;
-        }
-
-        .empty-state p {
-            color: #6c8ba0;
-            font-size: 1.1rem;
         }
 
         footer {
@@ -319,15 +475,21 @@
             .search-card {
                 padding: 1.2rem;
             }
-            .input-group {
+            .filter-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .search-row {
                 flex-direction: column;
                 align-items: stretch;
             }
-            .btn-search, .btn-clear {
-                justify-content: center;
-            }
             .universities-grid {
                 grid-template-columns: 1fr;
+            }
+            .admission-stats {
+                flex-direction: column;
+                gap: 0.3rem;
             }
         }
     </style>
@@ -335,413 +497,365 @@
 <body>
 <div class="container">
     <div class="hero">
-        <h1>📚 成人学历 · 城垛院校直通查询系统</h1>
-        <p>热门专业 | 正规高校 | 透明学费</p>
+        <h1>📚 广东成考院校查询系统（2026年）</h1>
+        <p>橙多教育 · 版权所有</p>
     </div>
 
     <div class="search-card">
-        <div class="search-label">
-            <i>🔍</i> <span>按专业名称查询：</span>
+        <div class="filter-group">
+            <div class="filter-label">🎓 招生层次（必选一项）：</div>
+            <div class="level-options" id="levelOptions">
+                <label class="level-option" id="levelGaozhuan">
+                    <input type="radio" name="level" value="高起专"> <span>高起专</span>
+                </label>
+                <label class="level-option" id="levelZhuanshengben">
+                    <input type="radio" name="level" value="专升本"> <span>专升本</span>
+                </label>
+            </div>
         </div>
-        <div class="input-group">
+
+        <div class="search-row">
             <div class="search-input-wrapper">
-                <input type="text" id="searchInput" class="search-input" placeholder="例如：计算机、工商管理、会计、学前教育..." autocomplete="off">
+                <input type="text" id="searchInput" class="search-input" placeholder="输入专业关键词，例如：工商、机电、电气..." autocomplete="off">
             </div>
             <button id="searchBtn" class="btn-search">🔎 查询院校</button>
-            <button id="clearBtn" class="btn-clear">🗑️ 清空 / 全部院校</button>
+            <button id="clearBtn" class="btn-clear">🗑️ 重置条件</button>
+        </div>
+
+        <!-- 优化后的咨询区域：微信和复制按钮与文字同行，紧凑布局，文案已修改 -->
+        <div class="consult-card">
+            <div class="consult-left">
+                <div class="consult-title">
+                    <span>📞</span> 立即咨询 · 学历提升
+                </div>
+                <div class="consult-desc">👩‍🏫 专业老师1对1答疑，可享学费优惠</div>
+                <div class="wechat-action">
+                    <span class="wechat-id" id="wechatId">ruxue0769</span>
+                    <button class="copy-btn" id="copyWechatBtn">复制微信号</button>
+                </div>
+            </div>
+            <div class="consult-badge">
+                💬 添加微信，即刻咨询
+            </div>
         </div>
         <div style="font-size: 0.75rem; margin-top: 12px; color: #608b9b;">
-            💡 提示：支持模糊匹配专业关键词（如“计算机”会匹配“计算机科学与技术”、“计算机应用”等）
+            💡 提示：必须选择“高起专”或“专升本”后再查询。高起专/专升本层次均显示2025年计划数及投档分（数据仅供参考）。
         </div>
     </div>
 
     <div class="info-bar">
-        <div class="result-count" id="resultCount">📌 共 0 所院校，0 个招生专业</div>
+        <div class="result-count" id="resultCount">📌 请选择层次并查询</div>
         <div class="sort-options">
-            <span style="font-size: 0.8rem; color:#306f82;">排序：</span>
-            <button data-sort="default" class="sort-btn active">🏫 默认排序</button>
-            <button data-sort="tuition_asc" class="sort-btn">💰 学费升序</button>
-            <button data-sort="tuition_desc" class="sort-btn">💰 学费降序</button>
+            <span style="font-size: 0.8rem;">排序：</span>
+            <button data-sort="default" class="sort-btn active">🏫 默认</button>
+            <button data-sort="year_asc" class="sort-btn">💰 年学费升序</button>
+            <button data-sort="total_asc" class="sort-btn">📊 总费用升序</button>
+            <button data-sort="score_asc" class="sort-btn">📈 投档分升序</button>
         </div>
     </div>
 
-    <div id="universitiesContainer" class="universities-grid">
-        <!-- 动态卡片列表 -->
-    </div>
-    <footer>
-        ⚡ 数据仅供参考，实际招生专业及学费以院校当年成人学历继续教育官方简章为准。
-    </footer>
+    <div id="universitiesContainer" class="universities-grid"></div>
+    <footer>⚠️ 年学费根据总费用 ÷ 学制年数自动计算；2025年计划数及投档分参考广东省成考历年数据，实际以考试院公布为准。</footer>
 </div>
 
 <script>
-    // ---------- 模拟真实招生院校及专业数据（成人高考/国家开放大学/自考助学）---------
-    // 每个院校包含名称，以及多个专业（专业名 + 学费/年）
-    const universitiesData = [
-        {
-            id: 1,
-            name: "北京信息科技大学",
-            level: "本科/高起本",
-            majors: [
-                { name: "计算机科学与技术", tuition: "3200元/年" },
-                { name: "软件工程", tuition: "3400元/年" },
-                { name: "工商管理", tuition: "3000元/年" },
-                { name: "会计学", tuition: "3000元/年" }
-            ]
-        },
-        {
-            id: 2,
-            name: "上海开放大学",
-            level: "专科/本科",
-            majors: [
-                { name: "计算机应用技术", tuition: "2800元/年" },
-                { name: "大数据与会计", tuition: "2700元/年" },
-                { name: "学前教育", tuition: "2500元/年" },
-                { name: "行政管理", tuition: "2600元/年" }
-            ]
-        },
-        {
-            id: 3,
-            name: "浙江工商大学",
-            level: "专升本",
-            majors: [
-                { name: "计算机信息管理", tuition: "3300元/年" },
-                { name: "工商管理", tuition: "3100元/年" },
-                { name: "市场营销", tuition: "3000元/年" },
-                { name: "人力资源管理", tuition: "3000元/年" }
-            ]
-        },
-        {
-            id: 4,
-            name: "深圳大学继续教育学院",
-            level: "高升专/专升本",
-            majors: [
-                { name: "计算机科学与技术", tuition: "3800元/年" },
-                { name: "电子商务", tuition: "3500元/年" },
-                { name: "商务英语", tuition: "3400元/年" },
-                { name: "金融学", tuition: "3600元/年" }
-            ]
-        },
-        {
-            id: 5,
-            name: "南京信息工程大学",
-            level: "成人本科",
-            majors: [
-                { name: "计算机科学与技术", tuition: "2900元/年" },
-                { name: "物联网工程", tuition: "3100元/年" },
-                { name: "大气科学", tuition: "2800元/年" },
-                { name: "会计学", tuition: "2700元/年" }
-            ]
-        },
-        {
-            id: 6,
-            name: "华南师范大学",
-            level: "专升本/高起本",
-            majors: [
-                { name: "学前教育", tuition: "3000元/年" },
-                { name: "教育学", tuition: "3200元/年" },
-                { name: "心理学", tuition: "3100元/年" },
-                { name: "计算机科学与技术", tuition: "3500元/年" }
-            ]
-        },
-        {
-            id: 7,
-            name: "西安电子科技大学",
-            level: "远程/成人",
-            majors: [
-                { name: "计算机科学与技术", tuition: "4000元/年" },
-                { name: "通信工程", tuition: "4200元/年" },
-                { name: "软件工程", tuition: "4100元/年" },
-                { name: "网络工程", tuition: "3950元/年" }
-            ]
-        },
-        {
-            id: 8,
-            name: "武汉理工大学",
-            level: "成人教育",
-            majors: [
-                { name: "土木工程", tuition: "3600元/年" },
-                { name: "车辆工程", tuition: "3700元/年" },
-                { name: "计算机应用技术", tuition: "3500元/年" },
-                { name: "工程管理", tuition: "3400元/年" }
-            ]
-        },
-        {
-            id: 9,
-            name: "山东财经大学",
-            level: "高起专/专升本",
-            majors: [
-                { name: "会计学", tuition: "2900元/年" },
-                { name: "金融学", tuition: "3000元/年" },
-                { name: "工商管理", tuition: "2850元/年" },
-                { name: "计算机信息管理", tuition: "2950元/年" }
-            ]
-        },
-        {
-            id: 10,
-            name: "四川师范大学",
-            level: "成人高考",
-            majors: [
-                { name: "学前教育", tuition: "2700元/年" },
-                { name: "小学教育", tuition: "2700元/年" },
-                { name: "汉语言文学", tuition: "2600元/年" },
-                { name: "计算机教育", tuition: "2900元/年" }
-            ]
-        },
-        {
-            id: 11,
-            name: "广州理工学院",
-            level: "专本连读",
-            majors: [
-                { name: "计算机科学与技术", tuition: "3600元/年" },
-                { name: "软件工程", tuition: "3700元/年" },
-                { name: "数据科学与大数据技术", tuition: "3800元/年" }
-            ]
-        },
-        {
-            id: 12,
-            name: "江苏开放大学",
-            level: "专科/本科",
-            majors: [
-                { name: "行政管理", tuition: "2400元/年" },
-                { name: "工商企业管理", tuition: "2500元/年" },
-                { name: "计算机应用", tuition: "2650元/年" }
-            ]
-        }
+    // ======================== 核心数据与逻辑 ========================
+    const rawRows = [
+        { school: "广东外语外贸大学", level: "高起专", major: "大数据与会计", durationStr: "3年", totalFee: 7500 },
+        { school: "广东外语外贸大学", level: "高起专", major: "人力资源管理", durationStr: "3年", totalFee: 7500 },
+        { school: "广东外语外贸大学", level: "专升本", major: "国际经济与贸易", durationStr: "3年", totalFee: 8100 },
+        { school: "广东外语外贸大学", level: "专升本", major: "教育学", durationStr: "3年", totalFee: 8100 },
+        { school: "广东工业大学", level: "高起专", major: "建筑工程技术", durationStr: "3年", totalFee: 8625 },
+        { school: "广东工业大学", level: "高起专", major: "机电一体化技术", durationStr: "3年", totalFee: 8625 },
+        { school: "广东工业大学", level: "专升本", major: "土木工程", durationStr: "3年", totalFee: 9315 },
+        { school: "广东工业大学", level: "专升本", major: "建筑学", durationStr: "3年", totalFee: 9315 },
+        { school: "岭南师范学院", level: "高起专", major: "小学数学教育", durationStr: "3年", totalFee: 7935 },
+        { school: "岭南师范学院", level: "高起专", major: "商务英语", durationStr: "3年", totalFee: 7935 },
+        { school: "岭南师范学院", level: "专升本", major: "汉语言文学", durationStr: "3年", totalFee: 7500 },
+        { school: "岭南师范学院", level: "专升本", major: "历史学", durationStr: "3年", totalFee: 7500 }
     ];
 
-    // 辅助函数：将学费字符串转为数字（用于排序） 例如 "3200元/年" -> 3200
-    function parseTuitionNumber(tuitionStr) {
-        const match = tuitionStr.match(/(\d+)/);
-        if (match) return parseInt(match[0], 10);
-        return 0;
+    const admissionScoresGaozhuan = {
+        "广东外语外贸大学": { level: "高起专", plan: 64, score: 177 },
+        "广东工业大学": { level: "高起专", plan: 205, score: 115 },
+        "岭南师范学院": { level: "高起专", plan: 393, score: 127 }
+    };
+    
+    const admissionScoresZhuanshengben = {
+        "广东外语外贸大学": { level: "专升本", plan: 64, score: 177 },
+        "广东工业大学": { level: "专升本", plan: 205, score: 115 },
+        "岭南师范学院": { level: "专升本", plan: 393, score: 127 }
+    };
+
+    function parseDurationYear(durationStr) {
+        const match = durationStr.match(/(\d+(?:\.\d+)?)/);
+        if (match) return parseFloat(match[1]);
+        return 3;
     }
 
-    // 存储当前筛选出的院校专业列表（展平每个院校+其匹配的专业，便于排序）
-    // 结构: [{ uniId, uniName, level, majorName, tuitionStr, tuitionValue }]
+    const enrichedRows = rawRows.map(row => {
+        const durationYears = parseDurationYear(row.durationStr);
+        const yearlyTuition = row.totalFee / durationYears;
+        return {
+            ...row,
+            durationYears: durationYears,
+            yearlyTuition: Math.round(yearlyTuition),
+            yearlyTuitionStr: Math.round(yearlyTuition) + "元/年"
+        };
+    });
+
+    const schoolMap = new Map();
+    enrichedRows.forEach(row => {
+        if (!schoolMap.has(row.school)) {
+            schoolMap.set(row.school, {
+                id: schoolMap.size + 1,
+                name: row.school,
+                majors: []
+            });
+        }
+        const schoolObj = schoolMap.get(row.school);
+        schoolObj.majors.push({
+            name: row.major,
+            level: row.level,
+            durationStr: row.durationStr,
+            totalFee: row.totalFee,
+            totalFeeStr: row.totalFee + "元",
+            yearlyTuition: row.yearlyTuition,
+            yearlyTuitionStr: row.yearlyTuitionStr
+        });
+    });
+
+    const universitiesData = Array.from(schoolMap.values());
+    universitiesData.sort((a,b) => a.name.localeCompare(b.name));
+
     let currentFlatList = [];
+    let activeSortType = "default";
+    let currentLevel = null;
+    let currentKeyword = "";
 
-    // 存储最近一次搜索关键词
-    let lastKeyword = "";
-
-    // 获取DOM元素
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
     const clearBtn = document.getElementById('clearBtn');
-    const universitiesContainer = document.getElementById('universitiesContainer');
-    const resultCountSpan = document.getElementById('resultCount');
-    let activeSortType = "default";   // default, tuition_asc, tuition_desc
+    const container = document.getElementById('universitiesContainer');
+    const resultSpan = document.getElementById('resultCount');
+    const radioGaozhuan = document.querySelector('input[value="高起专"]');
+    const radioZsb = document.querySelector('input[value="专升本"]');
+    const levelOptionDivs = document.querySelectorAll('.level-option');
 
-    // 排序函数 (基于展平列表)
-    function sortFlatList(list, sortType) {
-        if (sortType === "tuition_asc") {
-            return [...list].sort((a, b) => a.tuitionValue - b.tuitionValue);
-        } else if (sortType === "tuition_desc") {
-            return [...list].sort((a, b) => b.tuitionValue - a.tuitionValue);
-        } else {
-            // 默认：按院校ID + 专业顺序保持原始稳定 (按院校id升序，同院校内专业原序)
-            return [...list].sort((a, b) => {
-                if (a.uniId !== b.uniId) return a.uniId - b.uniId;
-                // 同院校内保持原索引顺序，因为构建时已经按照原始专业顺序，我们可以依靠添加顺序
-                return a.originalIndex - b.originalIndex;
-            });
-        }
+    function updateLevelUI() {
+        levelOptionDivs.forEach(div => {
+            const radio = div.querySelector('input');
+            if (radio && radio.checked) div.classList.add('active');
+            else div.classList.remove('active');
+        });
     }
 
-    // 根据关键词过滤院校专业数据，并构建 flatList，同时保存原始顺序索引
-    function filterByKeyword(keyword) {
-        const lowerKeyword = keyword.trim().toLowerCase();
-        let filteredItems = [];
-        let globalIdx = 0;
+    radioGaozhuan.addEventListener('change', () => { if(radioGaozhuan.checked) { currentLevel = "高起专"; updateLevelUI(); performSearch(); } });
+    radioZsb.addEventListener('change', () => { if(radioZsb.checked) { currentLevel = "专升本"; updateLevelUI(); performSearch(); } });
+
+    function buildFilteredList() {
+        if (!currentLevel) return [];
+        const lowerKw = currentKeyword.trim().toLowerCase();
+        let result = [];
+        let idx = 0;
         universitiesData.forEach(uni => {
-            // 找出该院校下匹配的专业（专业名包含关键词）
-            let matchedMajors = [];
-            if (lowerKeyword === "") {
-                // 空关键词展示所有专业
-                matchedMajors = uni.majors;
-            } else {
-                matchedMajors = uni.majors.filter(major => major.name.toLowerCase().includes(lowerKeyword));
-            }
-            matchedMajors.forEach(major => {
-                filteredItems.push({
+            uni.majors.forEach(major => {
+                if (major.level !== currentLevel) return;
+                if (lowerKw !== "" && !major.name.toLowerCase().includes(lowerKw)) return;
+                let admission = null;
+                if (currentLevel === "高起专" && admissionScoresGaozhuan[uni.name]) {
+                    admission = admissionScoresGaozhuan[uni.name];
+                } else if (currentLevel === "专升本" && admissionScoresZhuanshengben[uni.name]) {
+                    admission = admissionScoresZhuanshengben[uni.name];
+                }
+                result.push({
                     uniId: uni.id,
                     uniName: uni.name,
-                    level: uni.level,
                     majorName: major.name,
-                    tuitionStr: major.tuition,
-                    tuitionValue: parseTuitionNumber(major.tuition),
-                    originalIndex: globalIdx++   // 保持原顺序稳定
+                    durationStr: major.durationStr,
+                    totalFee: major.totalFee,
+                    totalFeeStr: major.totalFeeStr,
+                    yearlyTuition: major.yearlyTuition,
+                    yearlyTuitionStr: major.yearlyTuitionStr,
+                    level: major.level,
+                    admissionPlan: admission ? admission.plan : null,
+                    admissionScore: admission ? admission.score : null,
+                    originalIndex: idx++
                 });
             });
         });
-        return filteredItems;
+        return result;
     }
 
-    // 渲染列表（依据当前 flatList 和排序类型）
-    function renderList() {
-        if (!currentFlatList.length) {
-            universitiesContainer.innerHTML = `
-                <div class="empty-state">
-                    <div style="font-size: 3rem;">🔎</div>
-                    <p>未找到相关专业，试试 “计算机” 或 “会计” 等关键词～</p>
-                    <p style="font-size: 0.8rem; margin-top: 8px;">✨ 支持模糊匹配，点击清空查看全部院校专业</p>
-                </div>
-            `;
-            resultCountSpan.innerText = `📌 共 0 所院校，0 个招生专业`;
+    function sortList(list, sortType) {
+        if (sortType === "year_asc") return [...list].sort((a,b) => a.yearlyTuition - b.yearlyTuition);
+        if (sortType === "total_asc") return [...list].sort((a,b) => a.totalFee - b.totalFee);
+        if (sortType === "score_asc") {
+            return [...list].sort((a,b) => {
+                const scoreA = a.admissionScore !== null ? a.admissionScore : 9999;
+                const scoreB = b.admissionScore !== null ? b.admissionScore : 9999;
+                return scoreA - scoreB;
+            });
+        }
+        return [...list].sort((a,b) => {
+            if (a.uniId !== b.uniId) return a.uniId - b.uniId;
+            return a.originalIndex - b.originalIndex;
+        });
+    }
+
+    function render() {
+        if (!currentLevel) {
+            container.innerHTML = `<div class="empty-state"><div style="font-size:3rem;">⚠️</div><p>请先选择招生层次（高起专 / 专升本）</p><p style="font-size:0.9rem;">然后输入专业关键词进行查询</p></div>`;
+            resultSpan.innerText = `📌 请选择层次`;
+            return;
+        }
+        if (currentFlatList.length === 0) {
+            container.innerHTML = `<div class="empty-state"><div style="font-size:3rem;">🔍</div><p>未找到相关专业（当前层次：${currentLevel}）</p><p>试试其他关键词或重置条件</p></div>`;
+            resultSpan.innerText = `📌 共 0 所院校，0 个专业 (${currentLevel})`;
             return;
         }
 
-        // 应用排序得到排序后的列表
-        const sortedList = sortFlatList(currentFlatList, activeSortType);
-        
-        // 按院校分组展示（为了界面整洁，按院校卡片形式展示，但保证每个卡片内只显示当前筛选后的专业）
-        // 由于同一所院校可能有多个匹配的专业，需要重新组合成 院校 -> 专业数组
-        const uniMap = new Map(); // key: uniId, value: { uniName, level, majors: [] }
-        sortedList.forEach(item => {
+        const sorted = sortList(currentFlatList, activeSortType);
+        const uniMap = new Map();
+        for (const item of sorted) {
             if (!uniMap.has(item.uniId)) {
                 uniMap.set(item.uniId, {
-                    uniId: item.uniId,
                     uniName: item.uniName,
-                    level: item.level,
+                    admissionPlan: item.admissionPlan,
+                    admissionScore: item.admissionScore,
                     majors: []
                 });
             }
-            const uniEntry = uniMap.get(item.uniId);
-            // 避免重复添加相同专业（其实filter结果已保证唯一，但以防万一通过专业名称去重？ 但同院校同专业名可能存在? 简单去重按专业+学费）
-            const exists = uniEntry.majors.some(m => m.majorName === item.majorName && m.tuitionStr === item.tuitionStr);
-            if (!exists) {
-                uniEntry.majors.push({
-                    majorName: item.majorName,
-                    tuitionStr: item.tuitionStr
-                });
+            const existing = uniMap.get(item.uniId);
+            if (existing.admissionPlan === null && item.admissionPlan !== null) {
+                existing.admissionPlan = item.admissionPlan;
+                existing.admissionScore = item.admissionScore;
             }
-        });
-        
-        // 构建html
-        let totalMajorCount = sortedList.length;
-        let totalUniCount = uniMap.size;
-        resultCountSpan.innerText = `📌 共 ${totalUniCount} 所院校，${totalMajorCount} 个招生专业`;
-
-        if (uniMap.size === 0) {
-            universitiesContainer.innerHTML = `<div class="empty-state"><p>暂无匹配结果</p></div>`;
-            return;
+            existing.majors.push({
+                name: item.majorName,
+                duration: item.durationStr,
+                yearlyTuition: item.yearlyTuitionStr,
+                totalFee: item.totalFeeStr,
+                level: item.level
+            });
         }
 
-        let cardsHtml = "";
-        for (let uni of uniMap.values()) {
-            // 构建专业列表html
-            let majorsHtml = "";
-            uni.majors.forEach(major => {
+        const totalUni = uniMap.size;
+        const totalMajor = sorted.length;
+        resultSpan.innerText = `📌 共 ${totalUni} 所院校，${totalMajor} 个专业 (${currentLevel})`;
+
+        let html = '';
+        for (let [uniId, info] of uniMap.entries()) {
+            let majorsHtml = '';
+            for (let m of info.majors) {
                 majorsHtml += `
                     <div class="major-item">
-                        <div class="major-name">
-                            <span>📖 ${escapeHtml(major.majorName)}</span>
-                            <span class="tuition">💰 ${escapeHtml(major.tuitionStr)}</span>
+                        <div class="major-name">📖 ${escapeHtml(m.name)}</div>
+                        <div class="fee-info">
+                            <span class="fee-item year-tuition">💰 年学费: ${escapeHtml(m.yearlyTuition)}</span>
+                            <span class="fee-item duration">📅 学制: ${escapeHtml(m.duration)}</span>
+                            <span class="fee-item total-fee">🎓 总费用: ${escapeHtml(m.totalFee)}</span>
                         </div>
-                        <div class="major-detail">
-                            <span>🎓 ${escapeHtml(uni.level)}</span>
-                            <span>🏷️ 成人学历</span>
-                        </div>
+                        <div class="level-tag">🎓 ${escapeHtml(m.level)}</div>
                     </div>
                 `;
-            });
-            
-            cardsHtml += `
+            }
+            let scoreHtml = '';
+            if (info.admissionScore !== null && info.admissionPlan !== null) {
+                scoreHtml = `
+                    <div class="admission-stats">
+                        <div class="stat-item">📋 2025年计划数: <span class="stat-value">${info.admissionPlan}</span> 人</div>
+                        <div class="stat-item">🎯 2025年投档分: <span class="stat-value">${info.admissionScore}</span> 分</div>
+                        <div class="stat-item">⭐ 参考省控线: 100分左右</div>
+                    </div>
+                `;
+            } else {
+                scoreHtml = `<div class="admission-stats" style="background:#f5f5f5; border-color:#ddd;"><span class="stat-item">📋 暂无2025年官方分数线数据，请咨询招生办</span></div>`;
+            }
+            html += `
                 <div class="uni-card">
                     <div class="card-header">
                         <div class="uni-name">
-                            <span>🏛️ ${escapeHtml(uni.uniName)}</span>
-                            <span class="uni-badge">${escapeHtml(uni.level)}</span>
+                            <span>🏛️ ${escapeHtml(info.uniName)}</span>
+                            <span class="uni-badge">学历提升</span>
                         </div>
+                        ${scoreHtml}
                     </div>
                     <div class="card-body">
-                        ${majorsHtml || '<div style="color:gray; padding:0.5rem">暂无匹配专业</div>'}
+                        ${majorsHtml}
                     </div>
                 </div>
             `;
         }
-        universitiesContainer.innerHTML = cardsHtml;
+        container.innerHTML = html;
     }
 
-    // 简单防XSS
-    function escapeHtml(str) {
-        if (!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
+    function escapeHtml(str) { 
+        if (!str && str !== 0) return '';
+        return String(str).replace(/[&<>]/g, function(m) {
             if (m === '&') return '&amp;';
             if (m === '<') return '&lt;';
             if (m === '>') return '&gt;';
             return m;
-        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-            return c;
         });
     }
-
-    // 执行查询和刷新
+    
     function performSearch() {
-        let keyword = searchInput.value;
-        lastKeyword = keyword;
-        // 根据关键词过滤获得原始 flat列表（未排序）
-        const rawFiltered = filterByKeyword(keyword);
-        currentFlatList = rawFiltered;
-        // 重要：为每个项目增加原始索引用于排序，确保默认排序稳定（已经由filterByKeyword中globalIdx保证）
-        // 重新确保索引（filterByKeyword已做）
-        renderList();
+        if (!currentLevel) {
+            render();
+            return;
+        }
+        currentKeyword = searchInput.value;
+        currentFlatList = buildFilteredList();
+        render();
     }
-
-    // 清空搜索框并显示所有
-    function clearSearch() {
+    
+    function resetConditions() {
         searchInput.value = "";
-        lastKeyword = "";
-        const allItems = filterByKeyword("");   // 空字符串展示全部
-        currentFlatList = allItems;
-        renderList();
+        currentKeyword = "";
+        if (currentLevel) {
+            currentFlatList = buildFilteredList();
+            render();
+        } else {
+            render();
+        }
     }
-
-    // 改变排序并刷新
-    function setSortType(type) {
+    
+    function setSort(type) {
         activeSortType = type;
-        // 更新按钮样式
         document.querySelectorAll('.sort-btn').forEach(btn => {
-            if (btn.getAttribute('data-sort') === type) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
+            if (btn.getAttribute('data-sort') === type) btn.classList.add('active');
+            else btn.classList.remove('active');
         });
-        renderList();   // 重新渲染并排序
+        render();
     }
 
-    // 事件绑定与初始化
-    function init() {
-        // 初始加载全部数据
-        currentFlatList = filterByKeyword("");
-        renderList();
-        
-        // 绑定搜索按钮
-        searchBtn.addEventListener('click', () => {
-            performSearch();
-        });
-        // 回车键监听
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                performSearch();
-            }
-        });
-        clearBtn.addEventListener('click', () => {
-            clearSearch();
-        });
-        // 排序按钮
-        document.querySelectorAll('.sort-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const sortVal = btn.getAttribute('data-sort');
-                if (sortVal === 'default') setSortType('default');
-                else if (sortVal === 'tuition_asc') setSortType('tuition_asc');
-                else if (sortVal === 'tuition_desc') setSortType('tuition_desc');
+    // 复制微信号功能
+    const copyBtn = document.getElementById('copyWechatBtn');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+            const wechatId = document.getElementById('wechatId').innerText;
+            navigator.clipboard.writeText(wechatId).then(() => {
+                const originalText = copyBtn.innerText;
+                copyBtn.innerText = '已复制✓';
+                setTimeout(() => { copyBtn.innerText = originalText; }, 1500);
+            }).catch(() => {
+                alert('手动复制微信号: ' + wechatId);
             });
         });
     }
 
-    init();
+    searchBtn.addEventListener('click', performSearch);
+    clearBtn.addEventListener('click', resetConditions);
+    searchInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') performSearch(); });
+    document.querySelectorAll('.sort-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const type = btn.getAttribute('data-sort');
+            setSort(type);
+        });
+    });
+    
+    render();
 </script>
 </body>
 </html>
